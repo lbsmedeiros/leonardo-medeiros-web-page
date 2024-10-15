@@ -13,78 +13,76 @@
         <script src="https://cdn.tailwindcss.com"></script>
         {% block head %}
         {% endblock %}
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-        <script src="{% static 'js/script.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+        <script src="{% static 'js/base.js' %}"></script>
     </head>
     <body>
-        <nav class="bg-gray-800 fixed top-0 left-0 right-0 z-50">
+        <nav class="bg-[#0D1016] text-white fixed top-0 left-0 right-0 z-50">
             <div class="mx-auto max-w-7xl px-8">
                 <div class="flex h-16 items-center justify-between">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <!-- <img class="w-8" src="{% static '/img/favicon.ico' %}" alt=""> -->
-                        </div>
-                        <div>
-                            <div class="ml-4 flex items-center md:ml-6">
-                                <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-white inline-flex items-center gap-x-2" aria-current="page">
-                                    Início
-                                </a>
-                                <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-white inline-flex items-center gap-x-2" aria-current="page">
-                                    Sobre
-                                </a>
-                                <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-white inline-flex items-center gap-x-2" aria-current="page">
-                                    Aplicações
-                                </a>
-                                <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-white inline-flex items-center gap-x-2" aria-current="page">
-                                    Contato
-                                </a>
-                                <a href="https://api.whatsapp.com/send/?phone=5521984613800" class="rounded-md px-3 py-2 text-sm font-medium text-white inline-flex items-center gap-x-2" aria-current="page" target="_blank">
-                                    Ajuda
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative inline-block w-1/3 md:w-1/4">
-                        {% if user.is_authenticated and user.email_verified %}
-                        <button class="inline-flex justify-end w-full rounded-md px-3 py-2 text-sm font-medium text-white">
-                            <!-- <img id="dropdownButton" onclick="toggleDropdown()" class="h-10" src="{% static 'img/user-icon.png' %}"> -->
-                        </button>
-
-                        <div id="dropdownMenu" class="dropdown-content hidden origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1" class="flex items-center justify-end" role="menu" aria-orientation="vertical" aria-labelledby="dropdownButton">
-                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Perfil</a>
-                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Lista de arquivos</a>
-                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Lista de certificados</a>
-                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Novo certificado</a>
-                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Logout</a>
-                            </div>
-                        </div>
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium inline-flex items-center gap-x-2 hover:bg-[#7db4b5]" aria-current="page">
+                            <i class="fa fa-home fa-xl m-1"></i>
+                            Início
+                        </a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium inline-flex items-center gap-x-2 hover:bg-[#7db4b5]" aria-current="page">
+                            <i class="fa fa-info-circle fa-xl m-1" aria-hidden="true"></i>
+                            Sobre
+                        </a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium inline-flex items-center gap-x-2 hover:bg-[#7db4b5]" aria-current="page">
+                            <i class="fa fa-microchip fa-xl m-1"></i>
+                            Aplicações
+                        </a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium inline-flex items-center gap-x-2 hover:bg-[#7db4b5]" aria-current="page">
+                            <i class="fa fa-phone-square fa-xl m-1" aria-hidden="true"></i>
+                            Contato
+                        </a>
+                        {% if page == 'contato' or page == 'contact' %}
+                        <a href="https://api.whatsapp.com/send/?phone=5521984613800" class="rounded-md px-3 py-2 text-sm font-medium inline-flex items-center gap-x-2 hover:bg-[#7db4b5]" aria-current="page" target="_blank">
+                            <i class="fa-brands fa-whatsapp fa-xl m-1" aria-hidden="true"></i>
+                            Whatsapp
+                        </a>
                         {% endif %}
+                    </div>
+
+                    <div class="relative inline-block w-1/3 md:w-1/4">
+                        <button class="inline-flex justify-end w-full rounded-md px-3 py-2 text-sm font-medium">
+                            <img id="dropdownButton" onclick="toggleDropdown()" class="h-10 hover:bg-[#7db4b5]" src="{% static 'img/user-icon.png' %}">
+                        </button>
+                        <div id="dropdownMenu" class="dropdown-content hidden origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-[#0D1016] border border-1 border-black ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div class="py-1" class="flex items-center justify-end" role="menu" aria-orientation="vertical" aria-labelledby="dropdownButton">
+                                {% if user.is_authenticated and user.email_verified %}
+                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-[#7db4b5]" role="menuitem"><i class="fa fa-user fa-xl m-1"></i> Seu Perfil</a>
+                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-[#7db4b5]" role="menuitem"><i class="fa fa-microchip fa-xl m-1"></i> Aplicações</a>
+                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-[#7db4b5]" role="menuitem"><i class="fa fa-sign-out fa-xl m-1"></i> Sair</a>
+                                {% else %}
+                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-[#7db4b5]" role="menuitem"><i class="fa fa-sign-in fa-xl m-1"></i> Entrar</a>
+                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-[#7db4b5]" role="menuitem"><i class="fa fa-user-plus fa-xl m-1"></i> Cadastrar</a>
+                                <a href="#" class="block text-right px-4 py-2 text-sm text-gray-700 hover:bg-[#7db4b5]" role="menuitem"><i class="fa fa-microchip fa-xl m-1"></i> Aplicações</a>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
         <!-- Main content -->
-        <main class="mt-16 mx-7 mb-10">
+        <main class="mt-16 mx-7 mb-10 text-white">
         {% block content %}
         {% endblock %}
         </main>
-        <footer class="mt-auto left-0 right-0 bottom-0 bg-gray-800">
-            <div class="mt-4 py-4 px-10 text-white text-center flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-                <div class="flex-shrink-0">
-                    <!-- <img class="h-20" src="{% static 'img/logo.png' %}"> -->
-                </div>
+        <footer class="mt-auto left-0 right-0 bottom-0 bg-[#0D1016] text-white">
+            <div class="mt-4 py-4 px-10 text-center flex items-center justify-center">
                 <div class="text-center md:text-left">
-                    <p class="mb-3">&copy; 2024 Leonardo Barros Silva de medeiros.<br>Todos os direitos reservados.</p>
+                    <div class="text-center mb-3">
+                        <p>&copy; 2024 Leonardo Barros Silva de medeiros.</p>
+                        <p>Todos os direitos reservados.</p>
+                    </div>
                     <div class="flex flex-row items-center justify-center">
                         <a href="https://www.instagram.com/leomedeirosofficial/" target="_blank"><i class="fa-brands fa-instagram fa-xl m-1"></i></a>
                         <a href="https://www.linkedin.com/in/leonardo-medeiros-6266156b/" target="_blank"><i class="fa-brands fa-linkedin fa-xl"></i></a>
-                        <a href="#" target="_blank"><i class="fa-solid fa-globe fa-xl m-1"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-facebook fa-xl m-1"></i></a>
                     </div>
-                </div>
-                <div class="text-center md:text-right">
-                    <p><i class="fa-regular fa-envelope fa-lg m-1"></i> lbsmedeiros@gmail.com</p>
-                    <p><a href="https://api.whatsapp.com/send/?phone=5521984613800" target="_blank"><i class="fa-brands fa-whatsapp fa-lg m-1"></i></a> +55 (21) 98461-3800</p>
                 </div>
             </div>
         </footer>
